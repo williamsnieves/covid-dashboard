@@ -69,7 +69,7 @@ const App = () => {
         gridTemplateRows: "1 / 3",
         gap: "1"
       }}>
-        hola grid
+        hola grid update
       </div>
     </div>
   );
