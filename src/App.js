@@ -63,6 +63,14 @@ const App = () => {
       <PieChartComponent globals={statistics.Global} />
       <LineChartComponent globals={statistics.Global} />
       app
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1 / 6",
+        gridTemplateRows: "1 / 3",
+        gap: "1"
+      }}>
+        hola grid
+      </div>
     </div>
   );
 };
