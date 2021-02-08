@@ -50170,7 +50170,7 @@ const PieChartComponent = ({
         labels: globals !== undefined && Object.keys(globals),
         datasets: [{
           data,
-          backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)']
+          backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(61, 252, 255, 0.82)', 'rgba(255, 206, 86, 0.2)', 'rgba(255, 5, 26, 0.72)', 'rgba(255, 206, 86, 0.2)', 'rgba(51, 255, 126, 0.87)']
         }]
       }
     });
@@ -51654,10 +51654,10 @@ const LineChartComponent = ({
         datasets: [{
           label: "test title",
           data,
-          fill: 'none',
-          backgroundColor: "white",
+          fill: '#26ffe6',
+          backgroundColor: "#26ffe6",
           pointRadius: 2,
-          borderColor: "black",
+          borderColor: "#26ffe6",
           borderWidth: 1,
           lineTension: 0
         }]
@@ -51671,7 +51671,79 @@ const LineChartComponent = ({
 
 var _default = LineChartComponent;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/styles/grid.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51688,6 +51760,8 @@ var _DeathsComponent = _interopRequireDefault(require("./components/DeathsCompon
 var _InfectedComponent = _interopRequireDefault(require("./components/InfectedComponent"));
 
 var _LineChartComponent = _interopRequireDefault(require("./components/LineChartComponent"));
+
+require("./styles/grid.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51746,27 +51820,30 @@ const App = () => {
     }
   });*/
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_DeathsComponent.default, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "cell cell-1"
+  }, /*#__PURE__*/_react.default.createElement(_DeathsComponent.default, {
     deaths: statistics.Global !== undefined && statistics.Global.TotalDeaths
-  }), /*#__PURE__*/_react.default.createElement(_InfectedComponent.default, {
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "cell cell-2"
+  }, /*#__PURE__*/_react.default.createElement(_PieChartComponent.default, {
+    globals: statistics.Global
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "cell cell-3"
+  }, /*#__PURE__*/_react.default.createElement(_InfectedComponent.default, {
     infected: statistics.Global !== undefined && statistics.Global.TotalConfirmed
-  }), /*#__PURE__*/_react.default.createElement(_PieChartComponent.default, {
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "cell cell-4"
+  }, /*#__PURE__*/_react.default.createElement(_LineChartComponent.default, {
     globals: statistics.Global
-  }), /*#__PURE__*/_react.default.createElement(_LineChartComponent.default, {
-    globals: statistics.Global
-  }), "app", /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1 / 6",
-      gridTemplateRows: "1 / 3",
-      gap: "1"
-    }
-  }, "hola grid update"));
+  }))));
 };
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./components/PieChartComponent":"src/components/PieChartComponent.js","./components/DeathsComponent":"src/components/DeathsComponent.js","./components/InfectedComponent":"src/components/InfectedComponent.js","./components/LineChartComponent":"src/components/LineChartComponent.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./components/PieChartComponent":"src/components/PieChartComponent.js","./components/DeathsComponent":"src/components/DeathsComponent.js","./components/InfectedComponent":"src/components/InfectedComponent.js","./components/LineChartComponent":"src/components/LineChartComponent.js","./styles/grid.css":"src/styles/grid.css"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -51808,7 +51885,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59297" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59722" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
