@@ -3,6 +3,7 @@ import PieChartComponent from './components/PieChartComponent'
 import DeathsComponent from './components/DeathsComponent'
 import InfectedComponent from './components/InfectedComponent'
 import LineChartComponent from './components/LineChartComponent'
+import "./styles/grid.css";
 
 const App = () => {
   const [statistics, setStatistics] = useState({});
@@ -58,18 +59,19 @@ const App = () => {
 
   return (
     <div>
-      <DeathsComponent deaths={statistics.Global !== undefined && statistics.Global.TotalDeaths} />
-      <InfectedComponent infected={statistics.Global !== undefined && statistics.Global.TotalConfirmed}/>
-      <PieChartComponent globals={statistics.Global} />
-      <LineChartComponent globals={statistics.Global} />
-      app
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1 / 6",
-        gridTemplateRows: "1 / 3",
-        gap: "1"
-      }}>
-        hola grid update
+      <div className="container">
+        <div className="cell cell-1">
+          <DeathsComponent deaths={statistics.Global !== undefined && statistics.Global.TotalDeaths} />
+        </div>
+        <div className="cell cell-2">
+          <PieChartComponent globals={statistics.Global} />
+        </div>
+        <div className="cell cell-3">
+          <InfectedComponent infected={statistics.Global !== undefined && statistics.Global.TotalConfirmed}/>
+        </div>
+        <div className="cell cell-4">
+          <LineChartComponent globals={statistics.Global} />
+        </div>
       </div>
     </div>
   );

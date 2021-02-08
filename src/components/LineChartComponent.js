@@ -33,10 +33,10 @@ const LineChartComponent = ({globals}) => {
         datasets: [{
           label: "test title",
           data,
-          fill: 'none',
-          backgroundColor: "white",
+          fill: '#26ffe6',
+          backgroundColor: "#26ffe6",
           pointRadius: 2,
-          borderColor: "black",
+          borderColor: "#26ffe6",
           borderWidth: 1,
           lineTension: 0  
         }]
