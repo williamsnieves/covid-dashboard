@@ -51754,7 +51754,14 @@ const App = () => {
     globals: statistics.Global
   }), /*#__PURE__*/_react.default.createElement(_LineChartComponent.default, {
     globals: statistics.Global
-  }), "app");
+  }), "app", /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1 / 6",
+      gridTemplateRows: "1 / 3",
+      gap: "1"
+    }
+  }, "hola grid update"));
 };
 
 var _default = App;
@@ -51801,7 +51808,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52237" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59297" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
