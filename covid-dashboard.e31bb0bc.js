@@ -51572,7 +51572,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const DeathsComponent = ({
   deaths
 }) => {
-  return /*#__PURE__*/_react.default.createElement("div", null, "Total deaths: ", /*#__PURE__*/_react.default.createElement(_reactNumberFormat.default, {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      color: 'rgba(255, 5, 26, 0.72)'
+    }
+  }, "Total deaths: ", /*#__PURE__*/_react.default.createElement(_reactNumberFormat.default, {
     value: deaths,
     displayType: 'text',
     thousandSeparator: ".",
@@ -51599,7 +51603,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const InfectedComponent = ({
   infected
 }) => {
-  return /*#__PURE__*/_react.default.createElement("div", null, "People infected: ", /*#__PURE__*/_react.default.createElement(_reactNumberFormat.default, {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      color: 'rgba(216, 241, 160, 0.76)'
+    }
+  }, "People infected: ", /*#__PURE__*/_react.default.createElement(_reactNumberFormat.default, {
     value: infected,
     displayType: 'text',
     thousandSeparator: ".",
@@ -51619,10 +51627,6 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _moment = _interopRequireDefault(require("moment"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -51639,16 +51643,27 @@ const LineChartComponent = ({
       type: 'line',
       options: {
         maintainAspectRatio: true,
+        legend: {
+          labels: {
+            fontColor: "#26ffe6"
+          }
+        },
         scales: {
           xAxes: [{
+            ticks: {
+              fontColor: "#26ffe6"
+            },
             gridLines: {
-              color: 'rgba(109, 174, 219, 0.8);',
+              color: '#d2fdff',
               lineWidth: 1
             }
           }],
           yAxes: [{
+            ticks: {
+              fontColor: "#26ffe6"
+            },
             gridLines: {
-              color: 'rgba(109, 174, 219, 0.8);',
+              color: '#d2fdff',
               lineWidth: 1
             }
           }]
@@ -51670,13 +51685,14 @@ const LineChartComponent = ({
     });
   }, [globals]);
   return /*#__PURE__*/_react.default.createElement("canvas", {
+    "data-testid": "virus-line-chart",
     ref: canvasRef
   });
 };
 
 var _default = LineChartComponent;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -51862,7 +51878,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57688" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61543" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
