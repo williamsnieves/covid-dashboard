@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import moment from 'moment'
 
 const LineChartComponent = ({globals}) => {
   const canvasRef = React.createRef();
@@ -9,29 +10,31 @@ const LineChartComponent = ({globals}) => {
     myChart = new Chart(canvasRef.current, {
       type: 'line',
       options: {
-	      maintainAspectRatio: true
-      },
-      scales: {
-        xAxes: [
-          {
-            type: 'time',
-            time: {
-              unit: 'week'
+        maintainAspectRatio: true,
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                color: 'rgba(109, 174, 219, 0.8);',
+                lineWidth: 1
+              }
             }
-          }
-        ],
-        yAxes: [
-          {
-            ticks: {
-              min: 0
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                color: 'rgba(109, 174, 219, 0.8);',
+                lineWidth: 1
+              }
             }
-          }
-        ]
+          ]
+  
+        },
       },
       data: {
         labels: globals !== undefined && Object.keys(globals),
         datasets: [{
-          label: "test title",
+          label: "Line graph for stats",
           data,
           fill: '#26ffe6',
           backgroundColor: "#26ffe6",
