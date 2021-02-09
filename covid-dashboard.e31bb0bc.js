@@ -51619,6 +51619,10 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _moment = _interopRequireDefault(require("moment"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -51634,25 +51638,26 @@ const LineChartComponent = ({
     myChart = new Chart(canvasRef.current, {
       type: 'line',
       options: {
-        maintainAspectRatio: true
-      },
-      scales: {
-        xAxes: [{
-          type: 'time',
-          time: {
-            unit: 'week'
-          }
-        }],
-        yAxes: [{
-          ticks: {
-            min: 0
-          }
-        }]
+        maintainAspectRatio: true,
+        scales: {
+          xAxes: [{
+            gridLines: {
+              color: 'rgba(109, 174, 219, 0.8);',
+              lineWidth: 1
+            }
+          }],
+          yAxes: [{
+            gridLines: {
+              color: 'rgba(109, 174, 219, 0.8);',
+              lineWidth: 1
+            }
+          }]
+        }
       },
       data: {
         labels: globals !== undefined && Object.keys(globals),
         datasets: [{
-          label: "test title",
+          label: "Line graph for stats",
           data,
           fill: '#26ffe6',
           backgroundColor: "#26ffe6",
@@ -51671,7 +51676,7 @@ const LineChartComponent = ({
 
 var _default = LineChartComponent;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -51774,52 +51779,24 @@ const App = () => {
   const covidUrl = 'https://api.covid19api.com/summary';
   (0, _react.useEffect)(() => {
     const getCovidData = async () => {
-      const covidData = await fetch(covidUrl);
+      const covidData = await fetch(covidUrl, {
+        mode: 'cors'
+      });
       const results = await covidData.json();
       setStatistics(results);
     };
 
     getCovidData();
   }, []);
-  console.log("statistics", statistics);
-  /*var ctx = document.getElementById('myChart');
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-  });*/
 
+  const lineChartFilteredData = globals => {
+    let newLineChartData = { ...globals
+    };
+    delete newLineChartData.Date;
+    return newLineChartData;
+  };
+
+  console.log(lineChartFilteredData(statistics.Global !== undefined && statistics.Global));
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -51837,7 +51814,7 @@ const App = () => {
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "cell cell-4"
   }, /*#__PURE__*/_react.default.createElement(_LineChartComponent.default, {
-    globals: statistics.Global
+    globals: lineChartFilteredData(statistics.Global !== undefined && statistics.Global)
   }))));
 };
 
@@ -51885,7 +51862,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59722" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57688" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
