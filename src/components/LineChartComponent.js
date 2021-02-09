@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import moment from 'moment'
+import {Chart} from 'chart.js'
 
 const LineChartComponent = ({globals}) => {
   const canvasRef = React.createRef();
@@ -11,19 +11,30 @@ const LineChartComponent = ({globals}) => {
       type: 'line',
       options: {
         maintainAspectRatio: true,
+        legend: {
+          labels: {
+            fontColor: "#26ffe6",
+          }
+        },
         scales: {
           xAxes: [
             {
+              ticks: {
+                fontColor: "#26ffe6",
+              },
               gridLines: {
-                color: 'rgba(109, 174, 219, 0.8);',
+                color: '#d2fdff',
                 lineWidth: 1
               }
             }
           ],
           yAxes: [
             {
+              ticks: {
+                fontColor: "#26ffe6",
+              },
               gridLines: {
-                color: 'rgba(109, 174, 219, 0.8);',
+                color: '#d2fdff',
                 lineWidth: 1
               }
             }
@@ -48,7 +59,7 @@ const LineChartComponent = ({globals}) => {
   }, [globals]);
 
   return (
-    <canvas ref={canvasRef} />
+    <canvas data-testid="virus-line-chart" ref={canvasRef} />
   )
 }
 

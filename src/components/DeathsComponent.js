@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format';
 
 const DeathsComponent = ({deaths}) => {
   return (
-    <div>Total deaths: <NumberFormat value={deaths} displayType={'text'} thousandSeparator={"."} decimalSeparator={","} /></div>
+    <div style={{color: 'rgba(255, 5, 26, 0.72)'}}>Total deaths: <NumberFormat value={deaths} displayType={'text'} thousandSeparator={"."} decimalSeparator={","} /></div>
   )
 }
 
