@@ -3,7 +3,10 @@ import PieChartComponent from './components/PieChartComponent'
 import DeathsComponent from './components/DeathsComponent'
 import InfectedComponent from './components/InfectedComponent'
 import LineChartComponent from './components/LineChartComponent'
+import CountrySelector from './components/CountrySelector'
+
 import "./styles/grid.css";
+import "./styles/app.css";
 
 const App = () => {
   const [statistics, setStatistics] = useState({});
@@ -18,6 +21,24 @@ const App = () => {
     getCovidData();
   }, []);
 
+  const onSelectCountry = (code) => {
+
+    const [countryData] =  statistics.Countries.filter(result => result.CountryCode === code)
+
+    const {NewConfirmed, NewDeaths, NewRecovered, TotalConfirmed, TotalDeaths, TotalRecovered} = countryData
+
+    const filteredData = {...statistics, Global: {
+      NewConfirmed,
+      NewDeaths,
+      NewRecovered,
+      TotalConfirmed,
+      TotalDeaths,
+      TotalRecovered
+    }}
+    
+    setStatistics(filteredData)
+  }
+
   const lineChartFilteredData = (globals) => {
     let newLineChartData = {...globals}
 
@@ -30,6 +51,9 @@ const App = () => {
 
   return (
     <div>
+      <div className="country-selector">
+        <CountrySelector onSelectCountry={onSelectCountry}></CountrySelector>
+      </div>
       <div className="container">
         <div className="cell cell-1">
           <DeathsComponent deaths={statistics.Global !== undefined && statistics.Global.TotalDeaths} />

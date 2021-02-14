@@ -1,0 +1,9 @@
+.country-selector {
+  background: rgba(109, 174, 219, 0.8);
+  padding: 2em;
+  border: 2px solid #26ffe6
+}
+
+.flag-test {
+  background-color: "#fff" !important;
+}
