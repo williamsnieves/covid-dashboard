@@ -51577,6 +51577,7 @@ const DeathsComponent = ({
       color: 'rgba(255, 5, 26, 0.72)'
     }
   }, "Total deaths: ", /*#__PURE__*/_react.default.createElement(_reactNumberFormat.default, {
+    "data-testid": "total-deaths",
     value: deaths,
     displayType: 'text',
     thousandSeparator: ".",
@@ -51608,6 +51609,7 @@ const InfectedComponent = ({
       color: 'rgba(216, 241, 160, 0.76)'
     }
   }, "People infected: ", /*#__PURE__*/_react.default.createElement(_reactNumberFormat.default, {
+    "data-testid": "people-infected",
     value: infected,
     displayType: 'text',
     thousandSeparator: ".",
@@ -61091,7 +61093,6 @@ const App = () => {
     return newLineChartData;
   };
 
-  console.log(lineChartFilteredData(statistics.Global !== undefined && statistics.Global));
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "country-selector"
   }, /*#__PURE__*/_react.default.createElement(_CountrySelector.default, {
@@ -61161,7 +61162,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57910" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56581" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
