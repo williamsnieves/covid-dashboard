@@ -35,7 +35,7 @@ const App = () => {
       TotalDeaths,
       TotalRecovered
     }}
-    
+
     setStatistics(filteredData)
   }
 
@@ -46,8 +46,6 @@ const App = () => {
 
     return newLineChartData
   }
-
-  console.log(lineChartFilteredData(statistics.Global !== undefined && statistics.Global))
 
   return (
     <div>
